@@ -20,7 +20,7 @@ export default class Token {
     }
   }
 
-  verifyToken(token) {
+  static verifyToken(token) {
     jwt.verify(token, this.privateKey, { algorithms: ['ES256'] })
   }
 
