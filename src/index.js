@@ -13,10 +13,9 @@ async function run() {
     const privateKeyFileBase64 = core.getInput('private-key-p8-base64')
 
     var tokenString = ''
-    
+
     if (!!jsonWebToken) {
       tokenString = jsonWebToken
-      Token.verifyToken(tokenString)
     } else {
       const token = new Token(privateKeyRaw, privateKeyFilePath, privateKeyFileBase64)
       tokenString = token.generate(appId, issuerId, keyId)
