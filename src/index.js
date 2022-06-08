@@ -12,6 +12,8 @@ async function run() {
     const privateKeyFilePath = core.getInput('private-key-p8-path')
     const privateKeyFileBase64 = core.getInput('private-key-p8-base64')
 
+    console.log(`Json web token length = ${jsonWebToken.length}`)
+
     var tokenString = ''
     const token = new Token(privateKeyRaw, privateKeyFilePath, privateKeyFileBase64)
 
