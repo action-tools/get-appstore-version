@@ -1,0 +1,17 @@
+name: 'Get App Store app latest version'
+description: 'Get latest version of application from the App Store'
+inputs:
+  app-id:
+    description: 'App Store application identifier'
+    required: true
+    default: ''
+  json-web-token:
+    description: 'JSON Web Token for the App Store API request'
+    required: false
+    default: ''
+outputs:
+  app-version:
+    description: 'Latest app version from the App Store'
+runs:
+  using: 'node16'
+  main: './src/index.js'
