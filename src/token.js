@@ -1,15 +1,14 @@
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
-import tools from './tools.js'
 
 export default class Token {
 
   constructor(keyRaw, keyFile, keyFileBase64) {
-    if (!tools.isEmpty(keyRaw)) {
+    if (!!keyRaw) {
       this.privateKey = keyRaw
-    } else if (!tools.isEmpty(keyFile)) {
+    } else if (!!keyFile) {
       this.privateKey = fs.readFileSync(keyFile)
-    } else if (!tools.isEmpty(keyFileBase64)) {
+    } else if (!!keyFileBase64) {
       const keyFilename = 'authkey.p8'
       const buffer = Buffer.from(keyFileBase64, 'base64')
       fs.writeFileSync(keyFilename, buffer)

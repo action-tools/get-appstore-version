@@ -1,6 +1,5 @@
 import core from '@actions/core'
 import Token from './token.js'
-import tools from './tools.js'
 import request from './request.js'
 
 async function run() {
@@ -15,8 +14,8 @@ async function run() {
 
     var tokenString = ''
     const token = new Token(privateKeyRaw, privateKeyFilePath, privateKeyFileBase64)
-    
-    if (!tools.isEmpty(jsonWebToken)) {
+    token.verifyToken(jsonWebToken)
+    if (!!jsonWebToken) {
       tokenString = jsonWebToken
       token.verifyToken(tokenString)
     } else {
