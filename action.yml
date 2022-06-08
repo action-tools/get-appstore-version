@@ -9,9 +9,35 @@ inputs:
     description: 'JSON Web Token for the App Store API request'
     required: false
     default: ''
+  key-id:
+    description: 'Private key ID from App Store Connect'
+    required: false
+    default: ''
+  issuer-id:
+    description: 'Issuer ID from the API Keys page in App Store Connect'
+    required: false
+    default: ''
+  private-key-p8-path:
+    description: 'Private key file downloaded from the API Keys page in App Store Connect (*.p8 file)'
+    required: false
+    default: ''
+  private-key-p8-base64:
+    description: 'Private key downloaded from the API Keys page in App Store Connect (*.p8 file) in Base64 format'
+    required: false
+    default: ''
+  private-key-raw:
+    description: 'Raw private key downloaded from the API Keys page in App Store Connect'
+    required: false
+    default: ''
 outputs:
-  app-version:
+  app-version-latest:
     description: 'Latest app version from the App Store'
+  app-state-latest:
+    description: 'Latest app state from the App Store'
+  app-version-previous:
+    description: 'Previous app version from the App Store'
+  app-state-previous:
+    description: 'Previous app state from the App Store'
 runs:
   using: 'node16'
   main: './src/index.js'

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/ilyalehchylin/app-latest-version-appstore#readme",
   "dependencies": {
     "@actions/core": "^1.8.2",
-    "@actions/github": "^5.0.3"
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^3.2.5"
   }
 }
