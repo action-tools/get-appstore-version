@@ -5,20 +5,19 @@ import request from './request.js'
 async function run() {
   try {
     const appId = core.getInput('app-id')
-    const jsonWebToken = core.getInput('json-web-token')
     const keyId = core.getInput('key-id')
     const issuerId = core.getInput('issuer-id')
+    const jsonWebToken = core.getInput('json-web-token')
     const privateKeyRaw = core.getInput('private-key-raw')
     const privateKeyFilePath = core.getInput('private-key-p8-path')
     const privateKeyFileBase64 = core.getInput('private-key-p8-base64')
 
     var tokenString = ''
-    const token = new Token(privateKeyRaw, privateKeyFilePath, privateKeyFileBase64)
 
     if (!!jsonWebToken) {
       tokenString = jsonWebToken
-      token.verifyToken(tokenString)
     } else {
+      const token = new Token(privateKeyRaw, privateKeyFilePath, privateKeyFileBase64)
       tokenString = token.generate(appId, issuerId, keyId)
     }
 

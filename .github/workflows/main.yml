@@ -1,0 +1,75 @@
+on: [push]
+
+jobs:
+  job_test:
+    runs-on: ubuntu-latest
+    name: Job for action testing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Get App Store Version \#1
+        uses: ./
+        id: case_1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          json-web-token: ${{ secrets.JWT }}
+
+      - name: Get results \#1
+        run: |
+          echo "App Store latest version: ${{ steps.case_1.outputs.app-version-latest }}"
+          echo "App Store latest state: The time was ${{ steps.case_1.outputs.app-state-latest }}"
+          echo "App Store previous version: The time was ${{ steps.case_1.outputs.app-version-previous }}"
+          echo "App Store previous state: The time was ${{ steps.case_1.outputs.app-state-previous }}"
+          
+      - name: Get App Store Version \#2
+        uses: ./
+        id: case_2
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          key-id: ${{ secrets.KEY_ID }}
+          issuer-id: ${{ secrets.ISSUER_ID }}
+          private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
+
+      - name: Get results \#2
+        run: |
+          echo "App Store latest version: ${{ steps.case_2.outputs.app-version-latest }}"
+          echo "App Store latest state: The time was ${{ steps.case_2.outputs.app-state-latest }}"
+          echo "App Store previous version: The time was ${{ steps.case_2.outputs.app-version-previous }}"
+          echo "App Store previous state: The time was ${{ steps.case_2.outputs.app-state-previous }}"
+          
+      - name: Get App Store Version \#3
+        uses: ./
+        id: case_3
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          key-id: ${{ secrets.KEY_ID }}
+          issuer-id: ${{ secrets.ISSUER_ID }}
+          private-key-p8-base64: ${{ secrets.PRIVATE_KEY_FILE_BASE64 }}
+
+      - name: Get results \#3
+        run: |
+          echo "App Store latest version: ${{ steps.case_3.outputs.app-version-latest }}"
+          echo "App Store latest state: The time was ${{ steps.case_3.outputs.app-state-latest }}"
+          echo "App Store previous version: The time was ${{ steps.case_3.outputs.app-version-previous }}"
+          echo "App Store previous state: The time was ${{ steps.case_3.outputs.app-state-previous }}"
+      
+      - name: Decode base64 to file
+        run: echo ${{ secrets.PRIVATE_KEY_FILE_BASE64 }} | base64 --decode > AuthKey.p8
+      
+      - name: Get App Store Version \#4
+        uses: ./
+        id: case_4
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          key-id: ${{ secrets.KEY_ID }}
+          issuer-id: ${{ secrets.ISSUER_ID }}
+          private-key-p8-path: ./AuthKey.p8
+
+      - name: Get results \#4
+        run: |
+          echo "App Store latest version: ${{ steps.case_4.outputs.app-version-latest }}"
+          echo "App Store latest state: The time was ${{ steps.case_4.outputs.app-state-latest }}"
+          echo "App Store previous version: The time was ${{ steps.case_4.outputs.app-version-previous }}"
+          echo "App Store previous state: The time was ${{ steps.case_4.outputs.app-state-previous }}"
+        

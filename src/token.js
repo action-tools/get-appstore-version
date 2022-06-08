@@ -20,10 +20,6 @@ export default class Token {
     }
   }
 
-  verifyToken(token) {
-    jwt.verify(token, this.privateKey, { algorithms: ['ES256'] })
-  }
-
   generate(appId, issuerId, keyId) {
     const exp = '20m'
     const alg = 'ES256'
