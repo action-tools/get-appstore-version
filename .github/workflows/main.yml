@@ -14,8 +14,6 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           json-web-token: ${{ secrets.JWT }}
-          key-id: ${{ secrets.KEY_ID }}
-          issuer-id: ${{ secrets.ISSUER_ID }}
 
       - name: Get results \#1
         run: |
