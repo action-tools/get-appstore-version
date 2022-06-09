@@ -92,3 +92,7 @@ There are no **default values** for the inputs.
 | `app-state-latest`     | Latest app state from the App Store     |
 | `app-version-previous` | Previous app version from the App Store |
 | `app-state-previous`   | Previous app state from the App Store   |
+
+## Contributing
+
+Contributors are welcome! See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for additional instructions.
