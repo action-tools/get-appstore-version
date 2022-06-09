@@ -18,8 +18,10 @@ To get the app id you can either navigate to your app in the App Store with your
 4. Tap the "**+**" button.
 5. Enter the name of your key (e.g. `your-app-name-api-key`) and select the desired role (e.g. `Developer`).
 6. A new key will appear in your Keys list.
-7. Tap "**Download API Key**" to download the `AuthKey_{key-id}.p8` file (**Note**: you won't be able to download it afterwards).
-8. Copy **Issuer ID** and **Key ID** on the same page (you will be able to copy them afterwards).
+7. Tap "**Download API Key**" to download the `AuthKey_{key-id}.p8` file.  
+**Note**: You won't be able to download it afterwards.
+8. Copy **Issuer ID** and **Key ID** on the same page.  
+**Note**: You will be able to copy them afterwards.
 
 **Note**: It's suggested to store the sensitive information (like json web token, private key, key id and issuer id) as **[Github Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)** (please check also **[how to store files as secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#storing-base64-binary-blobs-as-secrets)**).
 
