@@ -37,10 +37,9 @@ Name conventions for branches:
 Examples:
 
 ```
-bug/#123-app-settings-crash
-update/docs-resources
-feature/new-page
-feature/#41-new-feature
+bug/#123-action-failure
+update/docs
+feature/new-feature
 ```
 
 ### Commits
