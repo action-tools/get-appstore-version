@@ -1,4 +1,4 @@
-name: 'Get App Store app latest version'
+name: 'App Store Connect Application Version'
 description: 'Get latest version of application from the App Store'
 inputs:
   app-id:
