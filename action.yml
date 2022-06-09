@@ -1,5 +1,8 @@
 name: 'App Store Connect Application Version'
 description: 'Get latest and previous versions of application from the App Store Connect'
+branding:
+  icon: 'smartphone'  
+  color: 'blue'
 inputs:
   app-id:
     description: 'App Store application identifier'
