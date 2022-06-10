@@ -63,9 +63,13 @@ jobs:
       - name: Get results
         run: |
           echo "App Store latest version: ${{ steps.appstore_version.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.appstore_version.outputs.app-state-latest }}"
-          echo "App Store previous version: The time was ${{ steps.appstore_version.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.appstore_version.outputs.app-state-previous }}"
+          echo "App Store latest state: ${{ steps.appstore_version.outputs.app-state-latest }}"
+          echo "App Store latest release type: ${{ steps.appstore_version.outputs.app-release-type-latest }}"
+          echo "App Store latest creation date: ${{ steps.appstore_version.outputs.version-created-date-latest }}"
+          echo "App Store previous version: ${{ steps.appstore_version.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.appstore_version.outputs.app-state-previous }}"
+          echo "App Store previous release type: ${{ steps.appstore_version.outputs.app-release-type-previous }}"
+          echo "App Store previous creation date: ${{ steps.appstore_version.outputs.version-created-date-previous }}"
 ```
 
 You can find some samples **[here](https://github.com/ilyalehchylin/app-latest-version-appstore/blob/develop/.github/workflows/main.yml)**.
@@ -74,21 +78,29 @@ You can find some samples **[here](https://github.com/ilyalehchylin/app-latest-v
 
 There are no **default values** for the inputs.
 
-| Input                   | Required | Description                                                                                      |
-| :---                    | :---     | :---                                                                                             |
-| `app-id`                | true     | App Store application identifier                                                                 |
-| `json-web-token`        | false    | JSON Web Token for the App Store API request                                                     |
-| `key-id`                | false    | Private key ID from App Store Connect                                                            |
-| `issuer-id`             | false    | Issuer ID from the API Keys page in App Store Connect                                            |
-| `private-key-p8-path`   | false    | Private key file downloaded from the API Keys page in App Store Connect (\*.p8 file)             |
-| `private-key-p8-base64` | false    | Private key downloaded from the API Keys page in App Store Connect (\*.p8 file) in Base64 format |
-| `private-key-raw`       | false    | Raw private key downloaded from the API Keys page in App Store Connect                           |
+| Input                   | Required | Description                                                                                       |
+| :---                    | :---     | :---                                                                                              |
+| `app-id`                | true     | App Store application identifier.                                                                 |
+| `json-web-token`        | false    | JSON Web Token for the App Store API request.                                                     |
+| `key-id`                | false    | Private key ID from App Store Connect.                                                            |
+| `issuer-id`             | false    | Issuer ID from the API Keys page in App Store Connect.                                            |
+| `private-key-p8-path`   | false    | Private key file downloaded from the API Keys page in App Store Connect (\*.p8 file).             |
+| `private-key-p8-base64` | false    | Private key downloaded from the API Keys page in App Store Connect (\*.p8 file) in Base64 format. |
+| `private-key-raw`       | false    | Raw private key downloaded from the API Keys page in App Store Connect.                           |
 
 ## Action Outputs
 
-| Output                 | Description                             |
-| :---                   | :---                                    |
-| `app-version-latest`   | Latest app version from the App Store   |
-| `app-state-latest`     | Latest app state from the App Store     |
-| `app-version-previous` | Previous app version from the App Store |
-| `app-state-previous`   | Previous app state from the App Store   |
+| Output                          | Description                                                                                         |
+| :---                            | :---                                                                                                |
+| `app-version-latest`            | Latest app version, e.g. `1.0.1`.                                                                   |
+| `app-state-latest`              | Latest app state. [Possible values](https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionstate).                                                    |
+| `app-release-type-latest`       | Latest app release type. Possible values: `MANUAL`, `AFTER_APPROVAL`, `SCHEDULED`.                  |
+| `version-created-date-latest`   | Latest app version created date, e.g. `2022-06-08T02:47:00-07:00`.                                  |
+| `app-version-previous`          | Previous app version, e.g. `1.0.0`.                                                                 |
+| `app-state-previous`            | Previous app state. [Possible values](https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionstate).                                                    |
+| `app-release-type-previous`     | Previous app release type. Possible values: `MANUAL`, `AFTER_APPROVAL`, `SCHEDULED`.                |
+| `version-created-date-previous` | Previous app version created date. `2022-04-29T10:03:06-07:00`.                                     |
+
+## Contributing
+
+Contributors are welcome! See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for additional instructions.

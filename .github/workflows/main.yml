@@ -7,20 +7,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+          
       - name: 'Get App Store Version #1'
         uses: ./
         id: case_1
         with:
           app-id: ${{ secrets.APP_ID }}
-          json-web-token: ${{ secrets.JWT }}
+          key-id: ${{ secrets.KEY_ID }}
+          issuer-id: ${{ secrets.ISSUER_ID }}
+          private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
 
       - name: 'Get results #1'
         run: |
           echo "App Store latest version: ${{ steps.case_1.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.case_1.outputs.app-state-latest }}"
-          echo "App Store previous version: The time was ${{ steps.case_1.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.case_1.outputs.app-state-previous }}"
+          echo "App Store latest state: ${{ steps.case_1.outputs.app-state-latest }}"
+          echo "App Store latest release type: ${{ steps.case_1.outputs.app-release-type-latest }}"
+          echo "App Store latest creation date: ${{ steps.case_1.outputs.version-created-date-latest }}"
+          echo "App Store previous version: ${{ steps.case_1.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.case_1.outputs.app-state-previous }}"
+          echo "App Store previous release type: ${{ steps.case_1.outputs.app-release-type-previous }}"
+          echo "App Store previous creation date: ${{ steps.case_1.outputs.version-created-date-previous }}"
           
       - name: 'Get App Store Version #2'
         uses: ./
@@ -29,15 +35,22 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           key-id: ${{ secrets.KEY_ID }}
           issuer-id: ${{ secrets.ISSUER_ID }}
-          private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
+          private-key-p8-base64: ${{ secrets.PRIVATE_KEY_FILE_BASE64 }}
 
       - name: 'Get results #2'
         run: |
           echo "App Store latest version: ${{ steps.case_2.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.case_2.outputs.app-state-latest }}"
-          echo "App Store previous version: The time was ${{ steps.case_2.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.case_2.outputs.app-state-previous }}"
-          
+          echo "App Store latest state: ${{ steps.case_2.outputs.app-state-latest }}"
+          echo "App Store latest release type: ${{ steps.case_2.outputs.app-release-type-latest }}"
+          echo "App Store latest creation date: ${{ steps.case_2.outputs.version-created-date-latest }}"
+          echo "App Store previous version: ${{ steps.case_2.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.case_2.outputs.app-state-previous }}"
+          echo "App Store previous release type: ${{ steps.case_2.outputs.app-release-type-previous }}"
+          echo "App Store previous creation date: ${{ steps.case_2.outputs.version-created-date-previous }}"
+      
+      - name: Decode base64 to file
+        run: echo ${{ secrets.PRIVATE_KEY_FILE_BASE64 }} | base64 --decode > AuthKey.p8
+      
       - name: 'Get App Store Version #3'
         uses: ./
         id: case_3
@@ -45,31 +58,34 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           key-id: ${{ secrets.KEY_ID }}
           issuer-id: ${{ secrets.ISSUER_ID }}
-          private-key-p8-base64: ${{ secrets.PRIVATE_KEY_FILE_BASE64 }}
+          private-key-p8-path: ./AuthKey.p8
 
       - name: 'Get results #3'
         run: |
           echo "App Store latest version: ${{ steps.case_3.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.case_3.outputs.app-state-latest }}"
-          echo "App Store previous version: The time was ${{ steps.case_3.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.case_3.outputs.app-state-previous }}"
-      
-      - name: Decode base64 to file
-        run: echo ${{ secrets.PRIVATE_KEY_FILE_BASE64 }} | base64 --decode > AuthKey.p8
-      
-      - name: 'Get App Store Version #4'
-        uses: ./
-        id: case_4
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          key-id: ${{ secrets.KEY_ID }}
-          issuer-id: ${{ secrets.ISSUER_ID }}
-          private-key-p8-path: ./AuthKey.p8
-
-      - name: 'Get results #4'
-        run: |
-          echo "App Store latest version: ${{ steps.case_4.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.case_4.outputs.app-state-latest }}"
-          echo "App Store previous version: The time was ${{ steps.case_4.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.case_4.outputs.app-state-previous }}"
+          echo "App Store latest state: ${{ steps.case_3.outputs.app-state-latest }}"
+          echo "App Store latest release type: ${{ steps.case_3.outputs.app-release-type-latest }}"
+          echo "App Store latest creation date: ${{ steps.case_3.outputs.version-created-date-latest }}"
+          echo "App Store previous version: ${{ steps.case_3.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.case_3.outputs.app-state-previous }}"
+          echo "App Store previous release type: ${{ steps.case_3.outputs.app-release-type-previous }}"
+          echo "App Store previous creation date: ${{ steps.case_3.outputs.version-created-date-previous }}"
         
+#       # Use this action with non-expired jwt
+#       - name: 'Get App Store Version #4'
+#         uses: ./
+#         id: case_4
+#         with:
+#           app-id: ${{ secrets.APP_ID }}
+#           json-web-token: ${{ secrets.JSON_WEB_TOKEN }}
+
+#       - name: 'Get results #4'
+#         run: |
+#          echo "App Store latest version: ${{ steps.case_4.outputs.app-version-latest }}"
+#          echo "App Store latest state: ${{ steps.case_4.outputs.app-state-latest }}"
+#          echo "App Store latest release type: ${{ steps.case_4.outputs.app-release-type-latest }}"
+#          echo "App Store latest creation date: ${{ steps.case_4.outputs.version-created-date-latest }}"
+#          echo "App Store previous version: ${{ steps.case_4.outputs.app-version-previous }}"
+#          echo "App Store previous state: ${{ steps.case_4.outputs.app-state-previous }}"
+#          echo "App Store previous release type: ${{ steps.case_4.outputs.app-release-type-previous }}"
+#          echo "App Store previous creation date: ${{ steps.case_4.outputs.version-created-date-previous }}"
