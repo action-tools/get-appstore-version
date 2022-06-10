@@ -34,17 +34,17 @@ inputs:
     default: ''
 outputs:
   app-version-latest:
-    description: 'Latest app version from the App Store'
+    description: 'Latest app version'
   app-state-latest:
-    description: 'Latest app state from the App Store'
+    description: 'Latest app state'
   app-release-type-latest:
     description: 'Latest app release type'
   version-created-date-latest:
     description: 'Latest app version created date'
   app-version-previous:
-    description: 'Previous app version from the App Store'
+    description: 'Previous app version'
   app-state-previous:
-    description: 'Previous app state from the App Store'
+    description: 'Previous app state'
   app-release-type-previous:
     description: 'Previous app release type'
   version-created-date-previous:
