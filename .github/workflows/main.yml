@@ -20,13 +20,13 @@ jobs:
       - name: 'Get results #1'
         run: |
           echo "App Store latest version: ${{ steps.case_1.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.case_1.outputs.app-state-latest }}"
+          echo "App Store latest state: ${{ steps.case_1.outputs.app-state-latest }}"
           echo "App Store latest release type: ${{ steps.case_1.outputs.app-release-type-latest }}"
-          echo "App Store latest creation date: The time was ${{ steps.case_1.outputs.version-created-date-latest }}"
-          echo "App Store previous version: The time was ${{ steps.case_1.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.case_1.outputs.app-state-previous }}"
+          echo "App Store latest creation date: ${{ steps.case_1.outputs.version-created-date-latest }}"
+          echo "App Store previous version: ${{ steps.case_1.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.case_1.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_1.outputs.app-release-type-previous }}"
-          echo "App Store previous creation date: The time was ${{ steps.case_1.outputs.version-created-date-previous }}"
+          echo "App Store previous creation date: ${{ steps.case_1.outputs.version-created-date-previous }}"
           
       - name: 'Get App Store Version #2'
         uses: ./
@@ -40,13 +40,13 @@ jobs:
       - name: 'Get results #2'
         run: |
           echo "App Store latest version: ${{ steps.case_2.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.case_2.outputs.app-state-latest }}"
+          echo "App Store latest state: ${{ steps.case_2.outputs.app-state-latest }}"
           echo "App Store latest release type: ${{ steps.case_2.outputs.app-release-type-latest }}"
-          echo "App Store latest creation date: The time was ${{ steps.case_2.outputs.version-created-date-latest }}"
-          echo "App Store previous version: The time was ${{ steps.case_2.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.case_2.outputs.app-state-previous }}"
+          echo "App Store latest creation date: ${{ steps.case_2.outputs.version-created-date-latest }}"
+          echo "App Store previous version: ${{ steps.case_2.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.case_2.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_2.outputs.app-release-type-previous }}"
-          echo "App Store previous creation date: The time was ${{ steps.case_2.outputs.version-created-date-previous }}"
+          echo "App Store previous creation date: ${{ steps.case_2.outputs.version-created-date-previous }}"
       
       - name: Decode base64 to file
         run: echo ${{ secrets.PRIVATE_KEY_FILE_BASE64 }} | base64 --decode > AuthKey.p8
@@ -63,13 +63,13 @@ jobs:
       - name: 'Get results #3'
         run: |
           echo "App Store latest version: ${{ steps.case_3.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.case_3.outputs.app-state-latest }}"
+          echo "App Store latest state: ${{ steps.case_3.outputs.app-state-latest }}"
           echo "App Store latest release type: ${{ steps.case_3.outputs.app-release-type-latest }}"
-          echo "App Store latest creation date: The time was ${{ steps.case_3.outputs.version-created-date-latest }}"
-          echo "App Store previous version: The time was ${{ steps.case_3.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.case_3.outputs.app-state-previous }}"
+          echo "App Store latest creation date: ${{ steps.case_3.outputs.version-created-date-latest }}"
+          echo "App Store previous version: ${{ steps.case_3.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.case_3.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_3.outputs.app-release-type-previous }}"
-          echo "App Store previous creation date: The time was ${{ steps.case_3.outputs.version-created-date-previous }}"
+          echo "App Store previous creation date: ${{ steps.case_3.outputs.version-created-date-previous }}"
         
 #       # Use this action with non-expired jwt
 #       - name: 'Get App Store Version #4'
@@ -82,10 +82,10 @@ jobs:
 #       - name: 'Get results #4'
 #         run: |
 #          echo "App Store latest version: ${{ steps.case_4.outputs.app-version-latest }}"
-#          echo "App Store latest state: The time was ${{ steps.case_4.outputs.app-state-latest }}"
+#          echo "App Store latest state: ${{ steps.case_4.outputs.app-state-latest }}"
 #          echo "App Store latest release type: ${{ steps.case_4.outputs.app-release-type-latest }}"
-#          echo "App Store latest creation date: The time was ${{ steps.case_4.outputs.version-created-date-latest }}"
-#          echo "App Store previous version: The time was ${{ steps.case_4.outputs.app-version-previous }}"
-#          echo "App Store previous state: The time was ${{ steps.case_4.outputs.app-state-previous }}"
+#          echo "App Store latest creation date: ${{ steps.case_4.outputs.version-created-date-latest }}"
+#          echo "App Store previous version: ${{ steps.case_4.outputs.app-version-previous }}"
+#          echo "App Store previous state: ${{ steps.case_4.outputs.app-state-previous }}"
 #          echo "App Store previous release type: ${{ steps.case_4.outputs.app-release-type-previous }}"
-#          echo "App Store previous creation date: The time was ${{ steps.case_4.outputs.version-created-date-previous }}"
+#          echo "App Store previous creation date: ${{ steps.case_4.outputs.version-created-date-previous }}"

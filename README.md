@@ -63,9 +63,9 @@ jobs:
       - name: Get results
         run: |
           echo "App Store latest version: ${{ steps.appstore_version.outputs.app-version-latest }}"
-          echo "App Store latest state: The time was ${{ steps.appstore_version.outputs.app-state-latest }}"
-          echo "App Store previous version: The time was ${{ steps.appstore_version.outputs.app-version-previous }}"
-          echo "App Store previous state: The time was ${{ steps.appstore_version.outputs.app-state-previous }}"
+          echo "App Store latest state: ${{ steps.appstore_version.outputs.app-state-latest }}"
+          echo "App Store previous version: ${{ steps.appstore_version.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.appstore_version.outputs.app-state-previous }}"
 ```
 
 You can find some samples **[here](https://github.com/ilyalehchylin/app-latest-version-appstore/blob/develop/.github/workflows/main.yml)**.
