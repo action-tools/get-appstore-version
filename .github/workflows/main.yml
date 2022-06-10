@@ -77,7 +77,7 @@ jobs:
 #         id: case_4
 #         with:
 #           app-id: ${{ secrets.APP_ID }}
-#           json-web-token: ${{ secrets.JWT }}
+#           json-web-token: ${{ secrets.JSON_WEB_TOKEN }}
 
 #       - name: 'Get results #4'
 #         run: |
