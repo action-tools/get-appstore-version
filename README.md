@@ -50,7 +50,7 @@ jobs:
         
       - name: Get App Store Version
         id: appstore_version
-        uses: ilyalehchylin/appstore-connect-app-version@v1.0
+        uses: ilyalehchylin/appstore-connect-app-version@v1.1
         with:
           app-id: ${{ secrets.APP_ID }}
           key-id: ${{ secrets.KEY_ID }}
