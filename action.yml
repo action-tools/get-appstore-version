@@ -37,10 +37,18 @@ outputs:
     description: 'Latest app version from the App Store'
   app-state-latest:
     description: 'Latest app state from the App Store'
+  app-release-type-latest:
+    description: 'Latest app release type'
+  version-created-date-latest:
+    description: 'Latest app version created date'
   app-version-previous:
     description: 'Previous app version from the App Store'
   app-state-previous:
     description: 'Previous app state from the App Store'
+  app-release-type-previous:
+    description: 'Previous app release type'
+  version-created-date-previous:
+    description: 'Previous app version created date'
 runs:
   using: 'node16'
   main: './src/index.js'

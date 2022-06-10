@@ -45,10 +45,14 @@ function setOutput(data, index) {
   const attributes = data[index].attributes
   const version = attributes.versionString
   const state = attributes.appStoreState
+  const releaseType = attributes.releaseType
+  const createdDate = attributes.createdDate
   const type = index === 0 ? 'latest' : 'previous'
   console.log(`The App Store application ${type} version is ${version} with the state ${state}`)
   core.setOutput(`app-version-${type}`, version)
   core.setOutput(`app-state-${type}`, state)
+  core.setOutput(`app-release-type-${type}`, releaseType)
+  core.setOutput(`version-created-date-${type}`, createdDate)
 }
 
 run()
