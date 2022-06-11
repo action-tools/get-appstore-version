@@ -103,4 +103,4 @@ There are no **default values** for the inputs.
 
 ## Contributing
 
-Contributors are welcome! See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for additional instructions.
+Contributors are welcome! See **[CONTRIBUTING.md](https://github.com/ilyalehchylin/appstore-connect-app-version/blob/main/CONTRIBUTING.md)** for additional instructions.
