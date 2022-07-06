@@ -37,7 +37,7 @@ The priority of the parameters (which one will be used first) is the following: 
 
 You can use this action simply by writing something like this:
 
-```
+```yaml
 on: [push]
 
 jobs:
