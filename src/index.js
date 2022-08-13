@@ -69,7 +69,7 @@ function setOutput(data, index, jsonOutput) {
   console.log(`The ${type} App Store application state is ${state}`)
   console.log(`The ${type} App Store application release type is ${releaseType}`)
   console.log(`The ${type} App Store application release creation date is ${createdDate}`)
-  console.log(`The API response output in JSON format:\n\n${createdDate}`)
+  console.log(`The API response output in JSON format:\n\n${jsonOutput}`)
   core.setOutput(`app-version-${type}`, version)
   core.setOutput(`app-state-${type}`, state)
   core.setOutput(`app-release-type-${type}`, releaseType)
