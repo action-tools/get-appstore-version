@@ -94,3 +94,15 @@ jobs:
 #          echo "App Store previous release type: ${{ steps.case_4.outputs.app-release-type-previous }}"
 #          echo "App Store previous creation date: ${{ steps.case_4.outputs.version-created-date-previous }}"
 #          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"
+
+      - name: 'Check limit'
+        uses: ./
+        id: case_5
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          key-id: ${{ secrets.KEY_ID }}
+          issuer-id: ${{ secrets.ISSUER_ID }}
+          private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
+
+      - name: 'Check limit (results)'
+        run: echo "API response: ${{ steps.case_5.outputs.versions-output-json }}"
