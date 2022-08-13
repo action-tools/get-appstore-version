@@ -28,6 +28,7 @@ jobs:
           echo "App Store previous state: ${{ steps.case_1.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_1.outputs.app-release-type-previous }}"
           echo "App Store previous creation date: ${{ steps.case_1.outputs.version-created-date-previous }}"
+          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"
           
       - name: 'Get App Store Version #2'
         uses: ./
@@ -48,6 +49,7 @@ jobs:
           echo "App Store previous state: ${{ steps.case_2.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_2.outputs.app-release-type-previous }}"
           echo "App Store previous creation date: ${{ steps.case_2.outputs.version-created-date-previous }}"
+          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"
       
       - name: Decode base64 to file
         run: echo ${{ secrets.PRIVATE_KEY_FILE_BASE64 }} | base64 --decode > AuthKey.p8
@@ -71,6 +73,7 @@ jobs:
           echo "App Store previous state: ${{ steps.case_3.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_3.outputs.app-release-type-previous }}"
           echo "App Store previous creation date: ${{ steps.case_3.outputs.version-created-date-previous }}"
+          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"
         
 #       # Use this action with non-expired jwt
 #       - name: 'Get App Store Version #4'
@@ -90,3 +93,4 @@ jobs:
 #          echo "App Store previous state: ${{ steps.case_4.outputs.app-state-previous }}"
 #          echo "App Store previous release type: ${{ steps.case_4.outputs.app-release-type-previous }}"
 #          echo "App Store previous creation date: ${{ steps.case_4.outputs.version-created-date-previous }}"
+#          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"

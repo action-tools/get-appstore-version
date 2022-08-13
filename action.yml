@@ -53,6 +53,8 @@ outputs:
     description: 'Previous app release type'
   version-created-date-previous:
     description: 'Previous app version created date'
+  versions-output-json:
+    description: 'API response in JSON format'
 runs:
   using: 'node16'
   main: './src/index.js'
