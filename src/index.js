@@ -26,14 +26,16 @@ async function run() {
     const limit = utils.getLimit(versionsLimit)
 
     console.log("Sending App Store Connect API request...")
-    const json = await request(appId, tokenString, limit)
-    const data = json.data
+    const jsonObject = await request(appId, tokenString, limit)
+    const data = jsonObject.data
 
     if (data === undefined || data.length === 0) {
       throw new Error('Invalid request. Please check your inputs.')
     }
 
     console.log("App Store Connect API request was successful, proceeding...")
+
+    const json = JSON.stringify(jsonObject)
 
     if (data.length > 0) {
       console.log("Setting outputs for the latest app version...")
