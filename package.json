@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/ilyalehchylin/app-latest-version-appstore#readme",
   "dependencies": {
-    "@actions/core": "^1.9.0",
+    "@actions/core": "^1.9.1",
     "jsonwebtoken": "^8.5.1",
     "node-fetch": "^3.2.10"
   }
