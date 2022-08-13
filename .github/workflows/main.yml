@@ -103,6 +103,7 @@ jobs:
           key-id: ${{ secrets.KEY_ID }}
           issuer-id: ${{ secrets.ISSUER_ID }}
           private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
+          versions-limit: 10
 
       - name: 'Check limit (results)'
         run: |
