@@ -37,12 +37,12 @@ async function run() {
 
     if (data.length > 0) {
       console.log("Setting outputs for the latest app version...")
-      setOutput(data, 0)
+      setOutput(data, 0, json)
     }
 
     if (data.length === 2) {
       console.log("Setting outputs for the previous app version...")
-      setOutput(data, 1)
+      setOutput(data, 1, json)
     }
 
     console.log("The action finished successfully.")
@@ -53,7 +53,7 @@ async function run() {
   }
 }
 
-function setOutput(data, index) {
+function setOutput(data, index, jsonOutput) {
   const type = index === 0 ? 'latest' : 'previous'
   const attributes = data[index].attributes
 
@@ -69,10 +69,12 @@ function setOutput(data, index) {
   console.log(`The ${type} App Store application state is ${state}`)
   console.log(`The ${type} App Store application release type is ${releaseType}`)
   console.log(`The ${type} App Store application release creation date is ${createdDate}`)
+  console.log(`The API response output in JSON format:\n\n${createdDate}`)
   core.setOutput(`app-version-${type}`, version)
   core.setOutput(`app-state-${type}`, state)
   core.setOutput(`app-release-type-${type}`, releaseType)
   core.setOutput(`version-created-date-${type}`, createdDate)
+  core.setOutput(`versions-output-json`, jsonOutput)
 }
 
 run()
