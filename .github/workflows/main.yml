@@ -105,4 +105,5 @@ jobs:
           private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
 
       - name: 'Check limit (results)'
-        run: echo "API response: ${{ steps.case_5.outputs.versions-output-json }}"
+        run: |
+          echo "API response: ${{ steps.case_5.outputs.versions-output-json }}"
