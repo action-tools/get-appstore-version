@@ -1,6 +1,6 @@
 import core from '@actions/core'
-import Token from './token.js'
 import request from './request.js'
+import Utils from './utils.js'
 
 async function run() {
   try {
@@ -11,22 +11,22 @@ async function run() {
     const privateKeyRaw = core.getInput('private-key-raw')
     const privateKeyFilePath = core.getInput('private-key-p8-path')
     const privateKeyFileBase64 = core.getInput('private-key-p8-base64')
+    const versionsLimit = core.getInput('versions-limit')
 
-    var tokenString = ''
+    const utils = new Utils()
+    const tokenString = utils.getToken(
+      appId, 
+      issuerId, 
+      keyId, 
+      jsonWebToken, 
+      privateKeyRaw, 
+      privateKeyFilePath, 
+      privateKeyFileBase64)
 
-    if (!!jsonWebToken) {
-      tokenString = jsonWebToken
-      console.log("Predefined Json Web Token has been set.")
-    } else {
-      console.log("Predefined Json Web Token hasn't been passed.")
-      console.log("Setting up the private key...")
-      const token = new Token(privateKeyRaw, privateKeyFilePath, privateKeyFileBase64)
-      console.log("Starting automatic token generation...")
-      tokenString = token.generate(appId, issuerId, keyId)
-    }
+    const limit = utils.getLimit(versionsLimit)
 
     console.log("Sending App Store Connect API request...")
-    const json = await request(appId, tokenString)
+    const json = await request(appId, tokenString, limit)
     const data = json.data
 
     if (data === undefined || data.length === 0) {

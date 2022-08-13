@@ -32,6 +32,10 @@ inputs:
     description: 'Raw private key downloaded from the API Keys page in App Store Connect'
     required: false
     default: ''
+  versions-limit:
+    description: 'Number of versions to return. Maximum value is 200.'
+    required: false
+    default: '2'
 outputs:
   app-version-latest:
     description: 'Latest app version'
