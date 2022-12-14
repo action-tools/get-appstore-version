@@ -1,26 +1,25 @@
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
+import { messages } from './messages.js'
 
 export default class Token {
 
   constructor(keyRaw, keyFile, keyFileBase64) {
     if (!!keyRaw) {
-      console.log("Using raw private key...")
+      console.log(messages.using_raw_private_key)
       this.privateKey = keyRaw
     } else if (!!keyFile) {
-      console.log("Using private key file...")
+      console.log(messages.using_file_private_key)
       this.privateKey = fs.readFileSync(keyFile)
     } else if (!!keyFileBase64) {
-      console.log("Starting Base64 private key file decryption...")
+      console.log(messages.base64_private_key_decryption)
       const keyFilename = 'authkey.p8'
       const buffer = Buffer.from(keyFileBase64, 'base64')
       fs.writeFileSync(keyFilename, buffer)
       this.privateKey = fs.readFileSync(keyFilename)      
-      console.log("Using decrypted Base64 private key file...")
+      console.log(messages.using_base64_private_key)
     } else {
-      throw new Error(`You must pass either private-key-raw, 
-      or private-key-p8-path, or private-key-p8-base64 in order to generate JWT automatically. 
-      Otherwise you should pass json-web-token.`)
+      throw new Error(messages.appstore_connect_setup_error)
     }
   }
 
