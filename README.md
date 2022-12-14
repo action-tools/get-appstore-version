@@ -1,6 +1,7 @@
-# App Store Connect Latest & Previous Versions Action
+# App Store Connect Versions Action
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ilyalehchylin/appstore-connect-app-version/main?logo=github)](https://github.com/ilyalehchylin/appstore-connect-app-version/actions/workflows/main.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ilyalehchylin/appstore-connect-app-version/main)](https://github.com/ilyalehchylin/appstore-connect-app-version/actions/workflows/main.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/ilyalehchylin/appstore-connect-app-version?include_prereleases)](https://github.com/ilyalehchylin/appstore-connect-app-version/releases/latest)
 
 This action can be used to get the **latest** and the **previous** application version from the App Store. It calls [appStoreVersions](https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_store_versions_for_an_app) request from the [App Store Connect API](https://developer.apple.com/documentation/appstoreconnectapi).
 
