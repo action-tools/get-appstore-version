@@ -19,11 +19,13 @@ jobs:
           itunes-lookup-try-api-on-failure: 'false'
 
       - name: 'Get iTunes Lookup results #1'
-        env:
-          JSON_OUTPUT: ${{ toJSON(steps.case_itunes_1.outputs.versions-output-json) }}
         run: |
           echo "App Store latest version: ${{ steps.case_itunes_1.outputs.app-version-latest }}"
           echo "App Store latest creation date: ${{ steps.case_itunes_1.outputs.version-created-date-latest }}"
+          JSON_OUTPUT=steps.case_itunes_1.outputs.versions-output-json
+          JSON_OUTPUT="${JSON_OUTPUT//'%'/'%25'}"
+          JSON_OUTPUT="${JSON_OUTPUT//$'\n'/'%0A'}"
+          JSON_OUTPUT="${JSON_OUTPUT//$'\r'/'%0D'}"
           echo "Parsed version from JSON: ${{ fromJson(JSON_OUTPUT).version }}"
 
       - name: 'Get Version from iTunes Lookup #2'
