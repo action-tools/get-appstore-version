@@ -38,9 +38,7 @@ export default class Utils {
   }
 
   prepareJsonString(jsonObject) {
-    const json = JSON.stringify(jsonObject, null, 2)
-    const escapedJson = JSON.parse(json)
-    return escapedJson
+    return JSON.stringify(jsonObject, null, 2)
   }
 
   #getLimitWithWarning(message) {
