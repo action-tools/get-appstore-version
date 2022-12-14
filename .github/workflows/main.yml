@@ -25,6 +25,7 @@ jobs:
           JSON_OUTPUT="${JSON_OUTPUT//'%'/'%25'}"
           JSON_OUTPUT="${JSON_OUTPUT//$'\n'/'%0A'}"
           JSON_OUTPUT="${JSON_OUTPUT//$'\r'/'%0D'}"
+          echo $JSON_OUTPUT
           echo "jsonOutput=$JSON_OUTPUT" >> $GITHUB_OUTPUT
 
       - name: 'Get iTunes Lookup results #1'
