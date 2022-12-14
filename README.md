@@ -83,10 +83,9 @@ Both iTunes Lookup and AppStore Connect API have an output `versions-output-json
     JSON_OUTPUT="${JSON_OUTPUT//$'\r'/'%0D'}"
     echo "jsonOutput=$JSON_OUTPUT" >> $GITHUB_OUTPUT
 
-- name: 'Get iTunes Lookup results #1'
+- name: 'Get iTunes Lookup results'
   run: |
-    echo "App Store latest version: ${{ steps.itunes_case.outputs.app-version-latest }}"
-    echo "App Store latest creation date: ${{ steps.itunes_case.outputs.version-created-date-latest }}"
+    echo "Parsed version from JSON: ${{ fromJson(steps.itunes_json.outputs.jsonOutput).results[0].version }}"
 ```
 
 ## Usage
