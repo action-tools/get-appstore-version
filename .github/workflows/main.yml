@@ -38,7 +38,7 @@ jobs:
         id: case_itunes_2
         with:
           is-itunes-lookup: 'true'
-          bundle-id: ${{ secrets.BUNDLE_ID }}
+          bundle-id: 'corrupted.bundle.id'
           use-https: 'true'
           itunes-lookup-try-api-on-failure: 'true'
           app-id: ${{ secrets.APP_ID }}
