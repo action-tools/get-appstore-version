@@ -74,7 +74,7 @@ Both iTunes Lookup and AppStore Connect API have an output `versions-output-json
       use-https: 'true'
       itunes-lookup-try-api-on-failure: 'false'
 
-- name: 'Get iTunes Lookup JSON Output #1'
+- name: 'Get iTunes Lookup JSON Output'
   id: itunes_json
   run: |
     JSON_OUTPUT='${{ steps.itunes_case.outputs.versions-output-json }}'
