@@ -18,5 +18,6 @@ export const messages = Object.freeze({
   appstore_state: "The %s App Store application state is %s",
   appstore_release_type: "The %s App Store application release type is %s",
   appstore_version_created_date: "The %s App Store application release creation date is %s",
-  json_output: "The API response output in JSON format:\n\n%s"
+  json_output: "The API response output in JSON format:\n\n%s",
+  json_output_generated: "The JSON output is successfully generated. You can access it with 'versions-output-json' output property."
 })

@@ -103,7 +103,7 @@ async function appstoreConnectApi() {
       setOutput(data, 1)
     }
 
-    console.log(util.format(messages.json_output, jsonOutput))
+    console.log(messages.json_json_output_generatedoutput)
     core.setOutput(`versions-output-json`, jsonOutput)
     console.log(messages.action_success)
   } catch (error) {
