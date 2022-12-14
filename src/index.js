@@ -6,7 +6,7 @@ import { messages } from './messages.js'
 
 async function run() {
   const isItunesLookup = core.getInput('is-itunes-lookup')
-  if (isItunesLookup === true) {
+  if (isItunesLookup === false) {
     console.log('itunes')
   } else {
     console.log('api')
