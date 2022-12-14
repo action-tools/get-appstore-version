@@ -31,10 +31,13 @@ async function itunesLookup() {
     }
 
     console.log(messages.itunes_lookup_request_success)
-    const jsonOutput = JSON.stringify(jsonObject)
+    const jsonOutput = JSON.stringify(jsonObject, null, 2)
     const result = jsonObject.results[0]
     const version = result.version
     const createdDate = result.currentVersionReleaseDate
+    console.log(util.format(messages.appstore_version, 'latest', version))
+    console.log(util.format(messages.appstore_version_created_date, 'latest', createdDate))
+    console.log(util.format(messages.json_output, jsonOutput))
     core.setOutput(`app-version-latest`, version)
     core.setOutput(`version-created-date-latest`, createdDate)
     core.setOutput(`versions-output-json`, jsonOutput)
@@ -81,7 +84,7 @@ async function appstoreConnectApi() {
       detail: ${error.detail}`)
     }
 
-    const jsonOutput = JSON.stringify(jsonObject)
+    const jsonOutput = JSON.stringify(jsonObject, null, 2)
     const data = jsonObject.data
 
     if (data === undefined || data.length === 0) {
@@ -100,6 +103,7 @@ async function appstoreConnectApi() {
       setOutput(data, 1)
     }
 
+    console.log(util.format(messages.json_output, jsonOutput))
     core.setOutput(`versions-output-json`, jsonOutput)
     console.log(messages.action_success)
   } catch (error) {
@@ -134,11 +138,10 @@ function setOutput(data, index) {
   const state = attributes.appStoreState
   const releaseType = attributes.releaseType
   const createdDate = attributes.createdDate
-  console.log(`The ${type} App Store application version is ${version}`)
-  console.log(`The ${type} App Store application state is ${state}`)
-  console.log(`The ${type} App Store application release type is ${releaseType}`)
-  console.log(`The ${type} App Store application release creation date is ${createdDate}`)
-  console.log(`The API response output in JSON format:\n\n${jsonOutput}`)
+  console.log(util.format(messages.appstore_version, type, version))
+  console.log(util.format(messages.appstore_state, type, state))
+  console.log(util.format(messages.appstore_release_type, type, releaseType))
+  console.log(util.format(messages.appstore_version_created_date, type, createdDate))
   core.setOutput(`app-version-${type}`, version)
   core.setOutput(`app-state-${type}`, state)
   core.setOutput(`app-release-type-${type}`, releaseType)

@@ -13,5 +13,10 @@ export const messages = Object.freeze({
   setting_outputs_latest: "Setting outputs for the latest app version...",
   setting_outputs_previous: "Setting outputs for the previous app version...",
   action_success: "The action finished successfully.",
-  set_output_error: "Something went wrong. Couldn't retrieve details for the %s app release..."
+  set_output_error: "Something went wrong. Couldn't retrieve details for the %s app release...",
+  appstore_version: "The %s App Store application version is %s",
+  appstore_state: "The %s App Store application state is %s",
+  appstore_release_type: "The %s App Store application release type is %s",
+  appstore_version_created_date: "The %s App Store application release creation date is %s",
+  json_output: "The API response output in JSON format:\n\n%s"
 })
