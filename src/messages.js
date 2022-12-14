@@ -20,5 +20,17 @@ export const messages = Object.freeze({
   appstore_release_type: "The %s App Store application release type is %s",
   appstore_version_created_date: "The %s App Store application release creation date is %s",
   json_output: "The API response output in JSON format:\n\n%s",
-  json_output_generated: "The JSON output is successfully generated. You can access it with 'versions-output-json' output property."
+  json_output_generated: "The JSON output is successfully generated. You can access it with 'versions-output-json' output property.",
+  predefined_jwt_set: "Predefined Json Web Token has been set.",
+  predefined_jwt_not_set: "Predefined Json Web Token hasn't been passed.",
+  setting_private_key: "Setting up the private key...",
+  using_raw_private_key: "Using raw private key...",
+  using_file_private_key: "Using private key file...",
+  base64_private_key_decryption: "Starting Base64 private key file decryption...",
+  using_base64_private_key: "Using decrypted Base64 private key file...",
+  appstore_connect_setup_error: "You must pass either private-key-raw, or private-key-p8-path, or private-key-p8-base64 in order to generate JWT automatically. Otherwise you should pass json-web-token.",
+  automatic_token_generation: "Starting automatic token generation...",
+  input_number_warning: "Input must be a number",
+  max_value_warning: "Maximum value is %s",
+  general_warning: "Warning ('versions-limit' input): %s. Using default value instead..."
 })

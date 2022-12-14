@@ -1,4 +1,6 @@
+import util from 'node:util'
 import Token from './token.js'
+import { messages } from './messages.js'
 
 export default class Utils {
 
@@ -8,14 +10,14 @@ export default class Utils {
 
   getToken(appId, issuerId, keyId, jwt, pkRaw, pkFilePath, pkFileBase64) {
     if (!!jwt) {
-      console.log("Predefined Json Web Token has been set.")
+      console.log(messages.predefined_jwt_set)
       return jwt
     }
 
-    console.log("Predefined Json Web Token hasn't been passed.")
-    console.log("Setting up the private key...")
+    console.log(messages.predefined_jwt_not_set)
+    console.log(messages.setting_private_key)
     const token = new Token(pkRaw, pkFilePath, pkFileBase64)
-    console.log("Starting automatic token generation...")
+    console.log(messages.automatic_token_generation)
     return token.generate(appId, issuerId, keyId)
   }
 
@@ -27,11 +29,11 @@ export default class Utils {
     const limit = parseInt(limitInput)
 
     if (!limit) {
-      return this.#getLimitWithWarning("Input must be a number")
+      return this.#getLimitWithWarning(messages.input_number_warning)
     }
 
     if (limit > 200) {
-      return this.#getLimitWithWarning("Maximum value is 200")
+      return this.#getLimitWithWarning(util.format(messages.max_value_warning, '200'))
     }
 
     return limit
@@ -42,7 +44,7 @@ export default class Utils {
   }
 
   #getLimitWithWarning(message) {
-    console.log(`Warning ('versions-limit' input): ${message}. Using default value instead...`)
+    console.log(util.format(messages.general_warning, message))
     return this.defaultLimit
   }
 }
