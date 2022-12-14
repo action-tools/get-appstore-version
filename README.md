@@ -62,6 +62,33 @@ The priority of the parameters (which one will be used first) is the following: 
 
 Both iTunes Lookup and AppStore Connect API have an output `versions-output-json` which contains all information that is parsed in action and even more (like app name, description, supported iOS, etc.). You can use this data and parse by yourself with **[fromJson](https://docs.github.com/en/actions/learn-github-actions/expressions#fromjson)** expression.
 
+### Sample
+
+```yaml
+- name: 'Get Version from iTunes Lookup'
+  uses: ilyalehchylin/appstore-connect-app-version@v1.3
+  id: itunes_case
+    with:
+      is-itunes-lookup: 'true'
+      bundle-id: ${{ secrets.BUNDLE_ID }}
+      use-https: 'true'
+      itunes-lookup-try-api-on-failure: 'false'
+
+- name: 'Get iTunes Lookup JSON Output #1'
+  id: itunes_json
+  run: |
+    JSON_OUTPUT='${{ steps.itunes_case.outputs.versions-output-json }}'
+    JSON_OUTPUT="${JSON_OUTPUT//'%'/'%25'}"
+    JSON_OUTPUT="${JSON_OUTPUT//$'\n'/'%0A'}"
+    JSON_OUTPUT="${JSON_OUTPUT//$'\r'/'%0D'}"
+    echo "jsonOutput=$JSON_OUTPUT" >> $GITHUB_OUTPUT
+
+- name: 'Get iTunes Lookup results #1'
+  run: |
+    echo "App Store latest version: ${{ steps.itunes_case.outputs.app-version-latest }}"
+    echo "App Store latest creation date: ${{ steps.itunes_case.outputs.version-created-date-latest }}"
+```
+
 ## Usage
 
 You can use this action simply by writing something like this:
