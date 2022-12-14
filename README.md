@@ -1,4 +1,4 @@
-# App Store Connect Versions Action
+# App Store Application Versions Action
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ilyalehchylin/appstore-connect-app-version/main)](https://github.com/ilyalehchylin/appstore-connect-app-version/actions/workflows/main.yml)
 [![GitHub Release](https://img.shields.io/github/v/release/ilyalehchylin/appstore-connect-app-version?include_prereleases)](https://github.com/ilyalehchylin/appstore-connect-app-version/releases/latest)
@@ -7,13 +7,35 @@ This action can be used to get the **latest** and the **previous** application v
 
 ## Prerequisites
 
+You can choose which way to get your application version from AppStore:
+* iTunes Lookup
+* AppStore Connect API
+
+### iTunes Lookup
+
+With iTunes lookup you can only retrieve the latest version from AppStore which is released and marked as live. It's the fastest and the most simple way, because you need provide the application's bundle identifier (`bundle-id`) and a few configuration properties (`use-https` and `itunes-lookup-try-api-on-failure`).
+
+The only outputs that you get from iTunes lookup are: `app-version-latest`, `version-created-date-latest`, `versions-output-json`.
+
+**Note**: Do not forget to activate it with `is-itunes-lookup` (by default it's `false`).
+
+#### How it works
+
+With iTunes lookup a request to https://itunes.apple.com/lookup?bundleId=YOUR_BUNDLE_ID is sent. It doesn't require any authorization.
+
+You can set `use-https` to `false` if you want to use HTTP endpoint (**Note**: if you release the app version, it takes about **24 hours** to get updated by `HTTP` endpoint. So if you want to get information immediately, please use `HTTPS`). By default `HTTPS` is used.
+
+### AppStore Connect API
+
+AppStore Connect API provides more details about your application (you can get info up to 200 versions).
+
 To send an API request to the App Store Connect you must generate a **[Json Web Token](https://jwt.io/introduction)** with ES256 encryption. You can generate this token by yourself and then pass it to the action or you can generate it automatically.
 
-### Get App Id
+#### Get App Id
 
 To get the app id you can either navigate to your app in the App Store with your browser and check your url (`https://apps.apple.com/by/app/{app-name}/id{app-id}`) or navigate to your app in the **[App Store Connect](https://appstoreconnect.apple.com)**, then open **App Information** at the left column and find **Apple ID** there (under the **General Information**). This parameter is required to identify your application.
 
-### API Key Creation
+#### API Key Creation
 
 1. First of all navigate to the **[App Store Connect](https://appstoreconnect.apple.com)**.
 2. Open **[Users and Access](https://appstoreconnect.apple.com/access/users)**.
@@ -28,7 +50,7 @@ To get the app id you can either navigate to your app in the App Store with your
 
 **Note**: It's suggested to store the sensitive information (like json web token, private key, key id and issuer id) as **[Github Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)** (please check also **[how to store files as secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#storing-base64-binary-blobs-as-secrets)**).
 
-### Json Web Token Generation
+#### Json Web Token Generation
 
 If you want to generate JWT manually, just refer to the **[Generating Tokens for API Requests](https://developer.apple.com/documentation/appstoreconnectapi/generating_tokens_for_api_requests)** article, then use something like **[token.dev](https://token.dev)** to create a token. All you should do is to pass `app-id` and `json-web-token` as the action's parameters.
 
@@ -51,9 +73,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Get App Store Version
+      - name: Get App Store Version with iTunes Lookup
         id: appstore_version
-        uses: ilyalehchylin/appstore-connect-app-version@v1.1
+        uses: ilyalehchylin/appstore-connect-app-version@v1.3
+        with:
+          is-itunes-lookup: true
+          bundle-id: ${{ secrets.BUNDLE_ID }}
+          use-https: true
+          itunes-lookup-try-api-on-failure: false
+        
+      - name: Get App Store Version with AppStore Connect API
+        id: appstore_version
+        uses: ilyalehchylin/appstore-connect-app-version@v1.3
         with:
           app-id: ${{ secrets.APP_ID }}
           key-id: ${{ secrets.KEY_ID }}
