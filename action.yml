@@ -5,7 +5,7 @@ branding:
   color: 'blue'
 inputs:
   is-itunes-lookup:
-    description: 'Should action use iTunes lookup endpoint or AppStore Connect Api'
+    description: 'Should action use iTunes lookup endpoint or AppStore Connect API'
     required: false
     default: false
   bundle-id:
@@ -17,7 +17,7 @@ inputs:
     required: false
     default: true
   itunes-lookup-try-api-on-failure:
-    description: 'Try to call AppStore Connect Api to get application version if iTunes lookup is failed (for iTunes lookup only)'
+    description: 'Try to call AppStore Connect API to get application version if iTunes lookup is failed (for iTunes lookup only)'
     required: false
     default: true
   app-id:
