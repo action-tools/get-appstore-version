@@ -8,6 +8,45 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: 'Get Version from iTunes Lookup #1'
+        uses: ./
+        id: case_itunes_1
+        with:
+          is-itunes-lookup: 'true'
+          bundle-id: ${{ secrets.BUNDLE_ID }}
+          use-https: 'true'
+          itunes-lookup-try-api-on-failure: 'false'
+          app-id: ${{ secrets.APP_ID }}
+          key-id: ${{ secrets.KEY_ID }}
+          issuer-id: ${{ secrets.ISSUER_ID }}
+          private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
+
+      - name: 'Get iTunes Lookup results #1'
+        run: |
+          echo "App Store latest version: ${{ steps.case_itunes_1.outputs.app-version-latest }}"
+          echo "App Store latest creation date: ${{ steps.case_itunes_1.outputs.version-created-date-latest }}"
+          echo "API response: ${{ steps.case_itunes_1.outputs.versions-output-json }}"
+
+      - name: 'Get Version from iTunes Lookup #2'
+        uses: ./
+        id: case_itunes_2
+        with:
+          is-itunes-lookup: 'true'
+          bundle-id: ${{ secrets.BUNDLE_ID }}
+          use-https: 'true'
+          itunes-lookup-try-api-on-failure: 'true'
+
+      - name: 'Get iTunes Lookup results #2'
+        run: |
+          echo "App Store latest version: ${{ steps.case_itunes_2.outputs.app-version-latest }}"
+          echo "App Store latest state: ${{ steps.case_itunes_2.outputs.app-state-latest }}"
+          echo "App Store latest release type: ${{ steps.case_itunes_2.outputs.app-release-type-latest }}"
+          echo "App Store latest creation date: ${{ steps.case_itunes_2.outputs.version-created-date-latest }}"
+          echo "App Store previous version: ${{ steps.case_itunes_2.outputs.app-version-previous }}"
+          echo "App Store previous state: ${{ steps.case_itunes_2.outputs.app-state-previous }}"
+          echo "App Store previous release type: ${{ steps.case_itunes_2.outputs.app-release-type-previous }}"
+          echo "App Store previous creation date: ${{ steps.case_itunes_2.outputs.version-created-date-previous }}"
           
       - name: 'Get App Store Version #1'
         uses: ./
@@ -28,7 +67,6 @@ jobs:
           echo "App Store previous state: ${{ steps.case_1.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_1.outputs.app-release-type-previous }}"
           echo "App Store previous creation date: ${{ steps.case_1.outputs.version-created-date-previous }}"
-          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"
           
       - name: 'Get App Store Version #2'
         uses: ./
@@ -49,7 +87,6 @@ jobs:
           echo "App Store previous state: ${{ steps.case_2.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_2.outputs.app-release-type-previous }}"
           echo "App Store previous creation date: ${{ steps.case_2.outputs.version-created-date-previous }}"
-          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"
       
       - name: Decode base64 to file
         run: echo ${{ secrets.PRIVATE_KEY_FILE_BASE64 }} | base64 --decode > AuthKey.p8
@@ -73,7 +110,6 @@ jobs:
           echo "App Store previous state: ${{ steps.case_3.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.case_3.outputs.app-release-type-previous }}"
           echo "App Store previous creation date: ${{ steps.case_3.outputs.version-created-date-previous }}"
-          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"
         
 #       # Use this action with non-expired jwt
 #       - name: 'Get App Store Version #4'
@@ -93,18 +129,3 @@ jobs:
 #          echo "App Store previous state: ${{ steps.case_4.outputs.app-state-previous }}"
 #          echo "App Store previous release type: ${{ steps.case_4.outputs.app-release-type-previous }}"
 #          echo "App Store previous creation date: ${{ steps.case_4.outputs.version-created-date-previous }}"
-#          echo "API response: ${{ steps.case_1.outputs.versions-output-json }}"
-
-      - name: 'Check limit'
-        uses: ./
-        id: case_5
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          key-id: ${{ secrets.KEY_ID }}
-          issuer-id: ${{ secrets.ISSUER_ID }}
-          private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
-          versions-limit: 10
-
-      - name: 'Check limit (results)'
-        run: |
-          echo "API response: ${{ steps.case_5.outputs.versions-output-json }}"
