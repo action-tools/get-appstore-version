@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "App Store latest version: ${{ steps.case_itunes_1.outputs.app-version-latest }}"
           echo "App Store latest creation date: ${{ steps.case_itunes_1.outputs.version-created-date-latest }}"
-          echo "Parsed version from JSON: ${{ fromJson(steps.case_itunes_json.outputs.jsonOutput).version }}"
+          echo "JSON: ${{ steps.case_itunes_json.outputs.jsonOutput }}"
 
       - name: 'Get Version from iTunes Lookup #2'
         uses: ./
