@@ -5,14 +5,14 @@ import Utils from './utils.js'
 import { messages } from './messages.js'
 
 async function run() {
-  const isItunesLookup = 'true'//core.getInput('is-itunes-lookup')
+  const isItunesLookup = core.getInput('is-itunes-lookup')
   isItunesLookup === 'true' ? await itunesLookup() : await appstoreConnectApi()
 }
 
 async function itunesLookup() {
   try {
-    const bundleId = 'by.bntu.educats'//core.getInput('bundle-id')
-    const useHttps = 'true'//core.getInput('use-https')
+    const bundleId = core.getInput('bundle-id')
+    const useHttps = core.getInput('use-https')
 
     if (!bundleId) {
       console.log(messages.bundle_id_not_defined)
