@@ -26,8 +26,14 @@ async function itunesLookup() {
     const jsonObject = await itunesLookupRequest(bundleId, useHttps)
     const resultFailure = jsonObject.resultCount === undefined || jsonObject.resultCount < 1
 
-    if (resultFailure && !await tryAppStoreConnectApi()) {
-      throw new Error(messages.itunes_lookup_general_error)
+    if (resultFailure) {
+      console.log(messages.itunes_failed_error)
+
+      if (!await tryAppStoreConnectApi()) {
+        throw new Error(messages.itunes_lookup_general_error)
+      }
+
+      return
     }
 
     console.log(messages.itunes_lookup_request_success)

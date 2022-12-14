@@ -5,6 +5,7 @@ export const messages = Object.freeze({
   trying_appstore_connect_api_on_failure: "Trying to get application version via AppStore Connect API...",
   itunes_lookup_bundle_id_error: "In order to use iTunes lookup you need to provide correct bundle id or you can use 'itunes-lookup-try-api-on-failure' parameter to call AppStore Connect API on iTunes lookup failures",
   itunes_lookup_general_error: "Couldn't find any information on your request. You can use 'itunes-lookup-try-api-on-failure' parameter to call AppStore Connect API on iTunes lookup failures",
+  itunes_failed_error: 'Failed to get version with iTunes lookup.',
   action_failed_error: "The action finished with error.",
   sending_appstore_connect_request: "Sending App Store Connect API request...",
   request_failed_with_message: "Request failed with message",
