@@ -31,14 +31,13 @@ async function itunesLookup() {
     }
 
     console.log(messages.itunes_lookup_request_success)
-    const jsonOutput = JSON.stringify(jsonObject)
-    const jsonOutputBeautified = JSON.stringify(jsonObject, null, 2)
+    const jsonOutput = JSON.stringify(jsonObject, null, 2)
     const result = jsonObject.results[0]
     const version = result.version
     const createdDate = result.currentVersionReleaseDate
     console.log(util.format(messages.appstore_version, 'latest', version))
     console.log(util.format(messages.appstore_version_created_date, 'latest', createdDate))
-    console.log(util.format(messages.json_output, jsonOutputBeautified))
+    console.log(util.format(messages.json_output, jsonOutput))
     core.setOutput(`app-version-latest`, version)
     core.setOutput(`version-created-date-latest`, createdDate)
     core.setOutput(`versions-output-json`, jsonOutput)
