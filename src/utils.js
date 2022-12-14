@@ -38,7 +38,7 @@ export default class Utils {
   }
 
   prepareJsonString(jsonObject) {
-    return JSON.stringify(jsonObject, null, 2)
+    return JSON.stringify(jsonObject)
   }
 
   #getLimitWithWarning(message) {
