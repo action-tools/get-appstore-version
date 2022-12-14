@@ -4,9 +4,25 @@ branding:
   icon: 'smartphone'  
   color: 'blue'
 inputs:
+  is-itunes-lookup:
+    description: 'Should action use iTunes lookup endpoint or AppStore Connect Api'
+    required: false
+    default: false
+  bundle-id:
+    description: 'Application bundle id (required for iTunes lookup only)'
+    required: false
+    default: ''
+  use-https:
+    description: 'Use HTTPS or HTTP (for iTunes lookup only)'
+    required: false
+    default: true
+  itunes-lookup-try-api-on-failure:
+    description: 'Try to call AppStore Connect Api to get application version if iTunes lookup is failed (for iTunes lookup only)'
+    required: false
+    default: true
   app-id:
     description: 'App Store application identifier'
-    required: true
+    required: false
     default: ''
   json-web-token:
     description: 'JSON Web Token for the App Store API request'
