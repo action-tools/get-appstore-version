@@ -39,15 +39,7 @@ export default class Utils {
 
   prepareJsonString(jsonObject) {
     const json = JSON.stringify(jsonObject, null, 2)
-    const escapedJson = json
-      .replace(/\\n/g, "\\n")
-      .replace(/\\'/g, "\\'")
-      .replace(/\\"/g, '\\"')
-      .replace(/\\&/g, "\\&")
-      .replace(/\\r/g, "\\r")
-      .replace(/\\t/g, "\\t")
-      .replace(/\\b/g, "\\b")
-      .replace(/\\f/g, "\\f")
+    const escapedJson = JSON.parse(json)
     return escapedJson
   }
 
