@@ -58,6 +58,10 @@ In order to generate JWT automatically, you can just provide `app-id`, `issuer-i
 
 The priority of the parameters (which one will be used first) is the following: `json-web-token` > `private-key-raw` > `private-key-p8-path` > `private-key-p8-base64`.
 
+## JSON Output
+
+Both iTunes Lookup and AppStore Connect API have an output `versions-output-json` which contains all information that is parsed in action and even more (like app name, description, supported iOS, etc.). You can use this data and parse by yourself with **[fromJson](https://docs.github.com/en/actions/learn-github-actions/expressions#fromjson)** expression.
+
 ## Usage
 
 You can use this action simply by writing something like this:
@@ -104,23 +108,26 @@ jobs:
           echo "App Store previous state: ${{ steps.appstore_version.outputs.app-state-previous }}"
           echo "App Store previous release type: ${{ steps.appstore_version.outputs.app-release-type-previous }}"
           echo "App Store previous creation date: ${{ steps.appstore_version.outputs.version-created-date-previous }}"
+          echo "JSON output: ${{ steps.appstore_version.outputs.versions-output-json }}"
 ```
 
 You can find some samples **[here](https://github.com/ilyalehchylin/app-latest-version-appstore/blob/develop/.github/workflows/main.yml)**.
 
 ## Action Inputs
 
-There are no **default values** for the inputs.
-
-| Input                   | Required | Description                                                                                       |
-| :---                    | :---     | :---                                                                                              |
-| `app-id`                | true     | App Store application identifier.                                                                 |
-| `json-web-token`        | false    | JSON Web Token for the App Store API request.                                                     |
-| `key-id`                | false    | Private key ID from App Store Connect.                                                            |
-| `issuer-id`             | false    | Issuer ID from the API Keys page in App Store Connect.                                            |
-| `private-key-p8-path`   | false    | Private key file downloaded from the API Keys page in App Store Connect (\*.p8 file).             |
-| `private-key-p8-base64` | false    | Private key downloaded from the API Keys page in App Store Connect (\*.p8 file) in Base64 format. |
-| `private-key-raw`       | false    | Raw private key downloaded from the API Keys page in App Store Connect.                           |
+| Input                              | Required | Default | Description                                                                           |
+| :---                               | :---     | :---    | :---                                                                                  |
+| `is-itunes-lookup`                 | false    | `false` | Should action use iTunes lookup endpoint or AppStore Connect API.                     |
+| `bundle-id`                        | false    |         | Application bundle id (required for iTunes lookup only).                              |
+| `use-https`                        | false    | `true`  | Use HTTPS or HTTP (for iTunes lookup only).                                           |
+| `itunes-lookup-try-api-on-failure` | false    | `true`  | Try to call AppStore Connect API if iTunes lookup is failed (for iTunes lookup only). |
+| `app-id`                           | false    |         | App Store application identifier.                                                     |
+| `json-web-token`                   | false    |         | JSON Web Token for the App Store API request.                                         |
+| `key-id`                           | false    |         | Private key ID from App Store Connect.                                                |
+| `issuer-id`                        | false    |         | Issuer ID from the API Keys page in App Store Connect.                                |
+| `private-key-p8-path`              | false    |         | Private key file downloaded from the API Keys page in App Store Connect (\*.p8 file). |
+| `private-key-p8-base64`            | false    |         | Private key downloaded from the App Store Connect (\*.p8 file) in Base64 format.      |
+| `private-key-raw`                  | false    |         | Raw private key downloaded from the API Keys page in App Store Connect.               |
 
 ## Action Outputs
 
@@ -134,6 +141,7 @@ There are no **default values** for the inputs.
 | `app-state-previous`            | Previous app state. [Possible values](https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionstate).                                                    |
 | `app-release-type-previous`     | Previous app release type. Possible values: `MANUAL`, `AFTER_APPROVAL`, `SCHEDULED`.                |
 | `version-created-date-previous` | Previous app version created date. `2022-04-29T10:03:06-07:00`.                                     |
+| `versions-output-json`          | JSON request output.                                                                                |
 
 ## Contributing
 
