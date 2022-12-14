@@ -6,6 +6,7 @@ import { messages } from './messages.js'
 
 async function run() {
   const isItunesLookup = core.getInput('is-itunes-lookup')
+  console.log(isItunesLookup)
   isItunesLookup ? await itunesLookup() : await appstoreConnectApi()
 }
 
