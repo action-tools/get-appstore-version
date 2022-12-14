@@ -17,10 +17,6 @@ jobs:
           bundle-id: ${{ secrets.BUNDLE_ID }}
           use-https: 'true'
           itunes-lookup-try-api-on-failure: 'false'
-          app-id: ${{ secrets.APP_ID }}
-          key-id: ${{ secrets.KEY_ID }}
-          issuer-id: ${{ secrets.ISSUER_ID }}
-          private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
 
       - name: 'Get iTunes Lookup results #1'
         run: |
@@ -36,6 +32,10 @@ jobs:
           bundle-id: ${{ secrets.BUNDLE_ID }}
           use-https: 'true'
           itunes-lookup-try-api-on-failure: 'true'
+          app-id: ${{ secrets.APP_ID }}
+          key-id: ${{ secrets.KEY_ID }}
+          issuer-id: ${{ secrets.ISSUER_ID }}
+          private-key-raw: ${{ secrets.PRIVATE_KEY_RAW }}
 
       - name: 'Get iTunes Lookup results #2'
         run: |
