@@ -6,14 +6,6 @@ export default class Utils {
     this.defaultLimit = 2
   }
 
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = Utils()
-    }
-
-    return this.instance
-  }
-
   getToken(appId, issuerId, keyId, jwt, pkRaw, pkFilePath, pkFileBase64) {
     if (!!jwt) {
       console.log("Predefined Json Web Token has been set.")

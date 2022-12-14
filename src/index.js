@@ -5,14 +5,14 @@ import Utils from './utils.js'
 import { messages } from './messages.js'
 
 async function run() {
-  const isItunesLookup = core.getInput('is-itunes-lookup')
+  const isItunesLookup = 'true'//core.getInput('is-itunes-lookup')
   isItunesLookup === 'true' ? await itunesLookup() : await appstoreConnectApi()
 }
 
 async function itunesLookup() {
   try {
-    const bundleId = core.getInput('bundle-id')
-    const useHttps = core.getInput('use-https')
+    const bundleId = 'by.bntu.educats'//core.getInput('bundle-id')
+    const useHttps = 'true'//core.getInput('use-https')
 
     if (!bundleId) {
       console.log(messages.bundle_id_not_defined)
@@ -31,7 +31,7 @@ async function itunesLookup() {
     }
 
     console.log(messages.itunes_lookup_request_success)
-    const utils = Utils.getInstance()
+    const utils = new Utils()
     const jsonOutput = utils.prepareJsonString(jsonObject)
     const result = jsonObject.results[0]
     const version = result.version
@@ -61,7 +61,7 @@ async function appstoreConnectApi() {
     const privateKeyFileBase64 = core.getInput('private-key-p8-base64')
     const versionsLimit = core.getInput('versions-limit')
 
-    const utils = Utils.getInstance()
+    const utils = new Utils()
 
     const tokenString = utils.getToken(
       appId,
