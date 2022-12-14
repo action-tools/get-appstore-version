@@ -31,7 +31,8 @@ async function itunesLookup() {
     }
 
     console.log(messages.itunes_lookup_request_success)
-    const jsonOutput = JSON.stringify(jsonObject, null, 2)
+    const utils = Utils.getInstance()
+    const jsonOutput = utils.prepareJsonString(jsonObject)
     const result = jsonObject.results[0]
     const version = result.version
     const createdDate = result.currentVersionReleaseDate
@@ -60,7 +61,8 @@ async function appstoreConnectApi() {
     const privateKeyFileBase64 = core.getInput('private-key-p8-base64')
     const versionsLimit = core.getInput('versions-limit')
 
-    const utils = new Utils()
+    const utils = Utils.getInstance()
+
     const tokenString = utils.getToken(
       appId,
       issuerId,
@@ -84,7 +86,7 @@ async function appstoreConnectApi() {
       detail: ${error.detail}`)
     }
 
-    const jsonOutput = JSON.stringify(jsonObject, null, 2)
+    const jsonOutput = utils.prepareJsonString(jsonObject)
     const data = jsonObject.data
 
     if (data === undefined || data.length === 0) {
