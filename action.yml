@@ -7,7 +7,7 @@ inputs:
   is-itunes-lookup:
     description: 'Should action use iTunes lookup endpoint or AppStore Connect API'
     required: false
-    default: false
+    default: 'false'
   bundle-id:
     description: 'Application bundle id (required for iTunes lookup only)'
     required: false
@@ -15,11 +15,11 @@ inputs:
   use-https:
     description: 'Use HTTPS or HTTP (for iTunes lookup only)'
     required: false
-    default: true
+    default: 'true'
   itunes-lookup-try-api-on-failure:
     description: 'Try to call AppStore Connect API to get application version if iTunes lookup is failed (for iTunes lookup only)'
     required: false
-    default: true
+    default: 'true'
   app-id:
     description: 'App Store application identifier'
     required: false

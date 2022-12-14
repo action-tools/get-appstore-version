@@ -6,12 +6,7 @@ import { messages } from './messages.js'
 
 async function run() {
   const isItunesLookup = core.getInput('is-itunes-lookup')
-  if (isItunesLookup === 'false') {
-    console.log('itunes')
-  } else {
-    console.log('api')
-  }
-  isItunesLookup ? await itunesLookup() : await appstoreConnectApi()
+  isItunesLookup === 'true' ? await itunesLookup() : await appstoreConnectApi()
 }
 
 async function itunesLookup() {
@@ -117,7 +112,7 @@ async function appstoreConnectApi() {
 async function tryAppStoreConnectApi() {
   const tryApiOnFailure = core.getInput('itunes-lookup-try-api-on-failure')
 
-  if (tryApiOnFailure === true) {
+  if (tryApiOnFailure === 'true') {
     console.log(messages.trying_appstore_connect_api_on_failure)
     await appstoreConnectApi()
     return true
