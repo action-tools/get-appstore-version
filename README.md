@@ -1,7 +1,7 @@
 # App Store Application Versions Action
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ilyalehchylin/appstore-connect-app-version/main.yml?branch=main)](https://github.com/ilyalehchylin/appstore-connect-app-version/actions/workflows/main.yml)
-[![GitHub Release](https://img.shields.io/github/v/release/ilyalehchylin/appstore-connect-app-version?include_prereleases)](https://github.com/ilyalehchylin/appstore-connect-app-version/releases/latest)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/action-tools/get-appstore-version/main.yml?branch=main)](https://github.com/action-tools/get-appstore-version/actions/workflows/main.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/action-tools/get-appstore-version?include_prereleases)](https://github.com/action-tools/get-appstore-version/releases/latest)
 
 This action can be used to get the **latest** and the **previous** application version from the App Store. It calls [appStoreVersions](https://developer.apple.com/documentation/appstoreconnectapi/list_all_app_store_versions_for_an_app) request from the [App Store Connect API](https://developer.apple.com/documentation/appstoreconnectapi).
 
@@ -66,7 +66,7 @@ Both iTunes Lookup and AppStore Connect API have an output `versions-output-json
 
 ```yaml
 - name: 'Get Version from iTunes Lookup'
-  uses: ilyalehchylin/appstore-connect-app-version@v1.3
+  uses: action-tools/get-appstore-version@v1.3
   id: itunes_case
     with:
       is-itunes-lookup: 'true'
@@ -105,7 +105,7 @@ jobs:
         
       - name: Get App Store Version with iTunes Lookup
         id: appstore_version
-        uses: ilyalehchylin/appstore-connect-app-version@v1.3
+        uses: action-tools/get-appstore-version@v1.3
         with:
           is-itunes-lookup: true
           bundle-id: ${{ secrets.BUNDLE_ID }}
@@ -114,7 +114,7 @@ jobs:
         
       - name: Get App Store Version with AppStore Connect API
         id: appstore_version
-        uses: ilyalehchylin/appstore-connect-app-version@v1.3
+        uses: action-tools/get-appstore-version@v1.3
         with:
           app-id: ${{ secrets.APP_ID }}
           key-id: ${{ secrets.KEY_ID }}
@@ -137,7 +137,7 @@ jobs:
           echo "JSON output: ${{ steps.appstore_version.outputs.versions-output-json }}"
 ```
 
-You can find some samples **[here](https://github.com/ilyalehchylin/app-latest-version-appstore/blob/develop/.github/workflows/main.yml)**.
+You can find some samples **[here](https://github.com/action-tools/app-latest-version-appstore/blob/develop/.github/workflows/main.yml)**.
 
 ## Action Inputs
 
@@ -171,4 +171,4 @@ You can find some samples **[here](https://github.com/ilyalehchylin/app-latest-v
 
 ## Contributing
 
-Contributors are welcome! See **[CONTRIBUTING.md](https://github.com/ilyalehchylin/appstore-connect-app-version/blob/main/CONTRIBUTING.md)** for additional instructions.
+Contributors are welcome! See **[CONTRIBUTING.md](https://github.com/action-tools/get-appstore-version/blob/main/CONTRIBUTING.md)** for additional instructions.
