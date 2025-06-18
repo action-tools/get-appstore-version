@@ -69,18 +69,23 @@ async function appstoreConnectApi() {
 
     const utils = new Utils()
 
+    const path = core.getInput('from-build')
+        ? `/v1/builds?filter[app]=${appId}`
+        : `/v1/apps/${appId}/appStoreVersions`;
+
     const tokenString = utils.getToken(
-      appId,
-      issuerId,
-      keyId,
-      jsonWebToken,
-      privateKeyRaw,
-      privateKeyFilePath,
-      privateKeyFileBase64)
+        appId,
+        issuerId,
+        keyId,
+        jsonWebToken,
+        privateKeyRaw,
+        privateKeyFilePath,
+        privateKeyFileBase64,
+        `GET ${path}`)
 
     const limit = utils.getLimit(versionsLimit)
     console.log(messages.sending_appstore_connect_request)
-    const jsonObject = await appstoreConnectApiRequest(appId, tokenString, limit)
+    const jsonObject = await appstoreConnectApiRequest(path, tokenString, limit)
 
     if (jsonObject.errors !== undefined && jsonObject.errors.length > 0) {
       const error = jsonObject.errors[0];
@@ -142,7 +147,7 @@ function setOutput(data, index) {
     throw new Error(message)
   }
 
-  const version = attributes.versionString
+  const version = attributes.versionString ?? attributes.version
   const state = attributes.appStoreState
   const releaseType = attributes.releaseType
   const createdDate = attributes.createdDate

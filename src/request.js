@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
-export const appstoreConnectApiRequest = async (appId, jwt, limit) => {
-  const url = `https://api.appstoreconnect.apple.com/v1/apps/${appId}/appStoreVersions?limit=${limit}`
+export const appstoreConnectApiRequest = async (path, jwt, limit) => {
+  const url = `https://api.appstoreconnect.apple.com${path}?limit=${limit}`
   const response = await fetch(url, { headers: { 'Authorization': `Bearer ${jwt}` } })
   return await response.json()
 }

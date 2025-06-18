@@ -16,18 +16,17 @@ export default class Token {
       const keyFilename = 'authkey.p8'
       const buffer = Buffer.from(keyFileBase64, 'base64')
       fs.writeFileSync(keyFilename, buffer)
-      this.privateKey = fs.readFileSync(keyFilename)      
+      this.privateKey = fs.readFileSync(keyFilename)
       console.log(messages.using_base64_private_key)
     } else {
       throw new Error(messages.appstore_connect_setup_error)
     }
   }
 
-  generate(appId, issuerId, keyId) {
+  generate(appId, issuerId, keyId, scope) {
     const exp = '20m'
     const alg = 'ES256'
     const aud = 'appstoreconnect-v1'
-    const scope = `GET /v1/apps/${appId}/appStoreVersions`
     const payload = { iss: issuerId, aud: aud, scope: [scope] }
     const jwtOptions = { expiresIn: exp, algorithm: alg, header: { kid: keyId } }
     return jwt.sign(payload, this.privateKey, jwtOptions)

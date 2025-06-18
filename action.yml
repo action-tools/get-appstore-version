@@ -1,7 +1,7 @@
 name: 'App Store Connect Application Version'
 description: 'Get latest and previous versions of application from the App Store Connect'
 branding:
-  icon: 'smartphone'  
+  icon: 'smartphone'
   color: 'blue'
 inputs:
   is-itunes-lookup:
@@ -52,6 +52,10 @@ inputs:
     description: 'Number of versions to return. Maximum value is 200.'
     required: false
     default: '2'
+  from-build:
+    description: 'Read version from build (for App Store Connect only)'
+    required: false
+    default: ''
 outputs:
   app-version-latest:
     description: 'Latest app version'
